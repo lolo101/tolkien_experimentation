@@ -1,9 +1,11 @@
 public class Parsed {
-    public Parsed(Couple couple) {
+    private final Couple couple;
 
+    public Parsed(Couple couple) {
+        this.couple = couple;
     }
 
     public String search(Pattern pattern) {
-        return "Chapter";
+        return couple.token;
     }
 }

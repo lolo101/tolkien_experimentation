@@ -1,6 +1,8 @@
 public class Couple {
 
-    public static Couple of(String chapter, String noun) {
-        return null;
+    public String token;
+
+    public Couple(String token, String partOfSpeech) {
+        this.token = token;
     }
 }
