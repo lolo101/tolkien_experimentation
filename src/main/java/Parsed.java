@@ -6,6 +6,9 @@ public class Parsed {
     }
 
     public String search(Pattern pattern) {
-        return couple.token;
+        if (pattern.match(couple.partOfSpeech)) {
+            return couple.token;
+        }
+        return "";
     }
 }
