@@ -1,5 +1,5 @@
 public class Pattern {
-    private String partOfSpeech;
+    private final String partOfSpeech;
 
     public Pattern(String partOfSpeech) {
         this.partOfSpeech = partOfSpeech;
