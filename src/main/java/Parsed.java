@@ -1,14 +1,17 @@
-public class Parsed {
-    private final Couple couple;
+import java.util.List;
+import java.util.stream.Collectors;
 
-    public Parsed(Couple couple) {
-        this.couple = couple;
+public class Parsed {
+    private final List<Couple> couples;
+
+    public Parsed(List<Couple> couples) {
+        this.couples = couples;
     }
 
     public String search(Pattern pattern) {
-        if (pattern.match(couple.partOfSpeech)) {
-            return couple.token;
-        }
-        return "";
+        return couples.stream()
+                .filter(couple -> pattern.match(couple.partOfSpeech))
+                .map(couple -> couple.token)
+                .collect(Collectors.joining());
     }
 }
