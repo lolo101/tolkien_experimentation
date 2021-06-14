@@ -1,7 +1,7 @@
 public class Couple {
 
-    public String token;
-    public String partOfSpeech;
+    public final String token;
+    public final String partOfSpeech;
 
     public Couple(String token, String partOfSpeech) {
         this.token = token;
