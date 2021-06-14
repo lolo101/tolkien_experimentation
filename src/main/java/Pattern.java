@@ -1,11 +1,13 @@
-public class Pattern {
-    private final String partOfSpeech;
+import java.util.Arrays;
 
-    public Pattern(String partOfSpeech) {
-        this.partOfSpeech = partOfSpeech;
+public class Pattern {
+    private final String[] partsOfSpeech;
+
+    public Pattern(String... partsOfSpeech) {
+        this.partsOfSpeech = partsOfSpeech;
     }
 
-    public boolean match(String somePartOfSpeech) {
-        return this.partOfSpeech.equals(somePartOfSpeech);
+    public boolean match(String... somePartsOfSpeech) {
+        return Arrays.equals(this.partsOfSpeech, somePartsOfSpeech);
     }
 }
