@@ -11,29 +11,28 @@ public class Pattern {
         this.partsOfSpeech = partsOfSpeech;
     }
 
-    public Head head(List<Couple> couples) {
-        return new Head(couples.subList(0, min(partsOfSpeech.length, couples.size())));
+    public Head head(List<Word> words) {
+        return new Head(words.subList(0, min(partsOfSpeech.length, words.size())));
     }
 
     public class Head {
-        private final List<Couple> couples;
+        private final List<Word> words;
 
-        public Head(List<Couple> couples) {
-            this.couples = couples;
+        public Head(List<Word> words) {
+            this.words = words;
         }
 
         public boolean matches() {
-            Object[] otherPartsOfSpeech = couples.stream()
+            Object[] otherPartsOfSpeech = words.stream()
                     .map(couple -> couple.partOfSpeech)
                     .toArray();
             return Arrays.equals(partsOfSpeech, otherPartsOfSpeech);
         }
 
         public String tokens() {
-            return couples.stream()
+            return words.stream()
                     .map(couple -> couple.token)
                     .collect(joining(" "));
-
         }
     }
 }

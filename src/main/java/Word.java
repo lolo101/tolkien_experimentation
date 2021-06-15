@@ -1,9 +1,9 @@
-public class Couple {
+public class Word {
 
     public final String token;
     public final String partOfSpeech;
 
-    public Couple(String token, String partOfSpeech) {
+    public Word(String token, String partOfSpeech) {
         this.token = token;
         this.partOfSpeech = partOfSpeech;
     }

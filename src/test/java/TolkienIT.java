@@ -14,10 +14,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 class TolkienIT {
     @Test
     void search_pattern() throws IOException {
-        List<Couple> couples = givenCouples();
-        Parsed parsed = new Parsed(couples);
+        List<Word> words = givenCouples();
+        Text text = new Text(words);
         Pattern pattern = new Pattern("NOUN", "CCONJ", "NOUN");
-        List<String> result = parsed.search(pattern);
+        List<String> result = text.search(pattern);
         assertThat(result).contains(
                 "talk and excitement",
                 "childhood and coming",
@@ -29,12 +29,12 @@ class TolkienIT {
         );
     }
 
-    private static List<Couple> givenCouples() throws IOException {
+    private static List<Word> givenCouples() throws IOException {
         try (InputStream jsonStream = TolkienIT.class.getResourceAsStream("/json_parsing.json")) {
             JSONArray array = new JSONArray(new JSONTokener(requireNonNull(jsonStream)));
             return StreamSupport.stream(array.spliterator(), false)
                     .map(JSONArray.class::cast)
-                    .map(rawCouple -> new Couple(rawCouple.getString(0), rawCouple.getString(1)))
+                    .map(rawCouple -> new Word(rawCouple.getString(0), rawCouple.getString(1)))
                     .collect(toList());
         }
     }

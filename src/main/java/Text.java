@@ -3,15 +3,15 @@ import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.toList;
 
-public class Parsed {
-    private final List<Couple> couples;
+public class Text {
+    private final List<Word> words;
 
-    public Parsed(List<Couple> couples) {
-        this.couples = couples;
+    public Text(List<Word> words) {
+        this.words = words;
     }
 
     public List<String> search(Pattern pattern) {
-        return IntStream.range(0, couples.size())
+        return IntStream.range(0, words.size())
                 .mapToObj(this::sublist)
                 .map(pattern::head)
                 .filter(Pattern.Head::matches)
@@ -19,7 +19,7 @@ public class Parsed {
                 .collect(toList());
     }
 
-    private List<Couple> sublist(int index) {
-        return couples.subList(index, couples.size());
+    private List<Word> sublist(int index) {
+        return words.subList(index, words.size());
     }
 }

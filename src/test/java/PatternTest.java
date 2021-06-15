@@ -11,16 +11,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 class PatternTest {
     @ParameterizedTest
     @MethodSource("matchingPartsOfSpeech")
-    void should_match_same_partOfSpeech(String[] partsOfSpeech, List<Couple> couples) {
+    void should_match_same_partOfSpeech(String[] partsOfSpeech, List<Word> words) {
         Pattern pattern = new Pattern(partsOfSpeech);
-        assertThat(pattern.head(couples).matches()).isTrue();
+        assertThat(pattern.head(words).matches()).isTrue();
     }
 
     @ParameterizedTest
     @MethodSource("unmatchingPartsOfSpeech")
-    void should_not_match_different_partOfSpeech(String[] partsOfSpeech, List<Couple> couples) {
+    void should_not_match_different_partOfSpeech(String[] partsOfSpeech, List<Word> words) {
         Pattern pattern = new Pattern(partsOfSpeech);
-        assertThat(pattern.head(couples).matches()).isFalse();
+        assertThat(pattern.head(words).matches()).isFalse();
     }
 
     private static Stream<Arguments> matchingPartsOfSpeech() {
@@ -28,15 +28,15 @@ class PatternTest {
                 Arguments.of(
                         new String[]{"NOUN", "NOUN"},
                         Arrays.asList(
-                                new Couple("toto", "NOUN"),
-                                new Couple("titi", "NOUN")
+                                new Word("toto", "NOUN"),
+                                new Word("titi", "NOUN")
                         )
                 ),
                 Arguments.of(
                         new String[]{"NOUN", "VERB"},
                         Arrays.asList(
-                                new Couple("toto", "NOUN"),
-                                new Couple("tata", "VERB")
+                                new Word("toto", "NOUN"),
+                                new Word("tata", "VERB")
                         )
                 )
         );
@@ -47,15 +47,15 @@ class PatternTest {
                 Arguments.of(
                         new String[]{"NOUN", "VERB"},
                         Arrays.asList(
-                                new Couple("tata", "VERB"),
-                                new Couple("titi", "NOUN")
+                                new Word("tata", "VERB"),
+                                new Word("titi", "NOUN")
                         )
                 ),
                 Arguments.of(
                         new String[]{"VERB", "NOUN"},
                         Arrays.asList(
-                                new Couple("tata", "VERB"),
-                                new Couple("tutu", "VERB")
+                                new Word("tata", "VERB"),
+                                new Word("tutu", "VERB")
                         )
                 )
         );
