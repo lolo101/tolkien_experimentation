@@ -11,6 +11,10 @@ public class Pattern {
         this.partsOfSpeech = partsOfSpeech;
     }
 
+    public Pattern(PatternElement... elements) {
+        this.partsOfSpeech = new String[0];
+    }
+
     public Head head(List<Word> words) {
         return new Head(words.subList(0, min(partsOfSpeech.length, words.size())));
     }

@@ -29,6 +29,24 @@ class TolkienIT {
         );
     }
 
+    @Test
+    void search_word_pattern() throws IOException {
+        List<Word> words = givenCouples();
+        Text text = new Text(words);
+        Pattern pattern = new Pattern(PatternElement.anyToken("NOUN"), PatternElement.of("and", "CCONJ"), PatternElement.anyToken("NOUN"));
+        List<String> result = text.search(pattern);
+        assertThat(result).contains(
+                "talk and excitement",
+                "childhood and coming",
+                "history and character",
+                "gold and silver",
+                "Cabbages and potatoes",
+                "sorts and shapes"
+        ).doesNotContain(
+                "squib or cracker"
+        );
+    }
+
     private static List<Word> givenCouples() throws IOException {
         try (InputStream jsonStream = TolkienIT.class.getResourceAsStream("/json_parsing.json")) {
             JSONArray array = new JSONArray(new JSONTokener(requireNonNull(jsonStream)));
